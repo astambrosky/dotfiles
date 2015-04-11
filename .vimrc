@@ -9,7 +9,7 @@ syntax on
 set ruler
 set autoindent
 
-" Real programmers don't use TABs but spaces
+" Someone once told me that real programmers don't use TABs but spaces
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
