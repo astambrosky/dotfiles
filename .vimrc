@@ -115,11 +115,21 @@ Bundle 'tpope/vim-surround'
 Bundle 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-airline'
-
+Plugin 'sjl/gundo.vim'
+Plugin 'terryma/vim-multiple-cursors'
 " make vim work with osx clipboard
 set clipboard=unnamed
 
-"Make nerdtree work with Ctrl-N
-nmap <silent> <c-n> :NERDTreeToggle<CR>
+"Make nerdtree work with leader-n 
+map <leader>n :NERDTreeToggle<CR>
 let g:airline_theme="badwolf"
 
+"Gundo set toggle to F5
+nnoremap <F5> :GundoToggle<CR>
+" Removes trailing spaces
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+nnoremap <silent> <Leader>rts :call TrimWhiteSpace()<CR>
+set wrap linebreak nolist
