@@ -32,9 +32,15 @@ call plug#begin('~/.nvim/plugged')
   Plug 'chase/vim-ansible-yaml'
   Plug 'vim-scripts/fountain.vim'
   Plug 'nvie/vim-flake8'
+  Plug 'tmhedberg/SimpylFold'
+  Plug 'chaimleib/vim-renpy'
 call plug#end()
 
-
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+nnoremap <space> za
+let g:SimpylFold_docstring_preview=1
 "adding python support
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3.4'
@@ -119,7 +125,8 @@ map <Leader>m <esc>:tabnext<CR>
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
-map <BS> <c-w>h
+map <c-h> <c-w>h
+"map <BS> <c-w>h
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -135,6 +142,9 @@ set clipboard=unnamed
 
 "Make nerdtree work with leader-n 
 map <leader>n :NERDTreeToggle<CR>
+"Hide .pyc files in NerdTree
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
 let g:airline_theme="badwolf"
 
 "Gundo set toggle to F5
@@ -190,3 +200,21 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " Add fountain Syntax Highlighting
+
+
+" Make Vim faster with long lines and syntax highlighting
+set synmaxcol=120
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" Terminal escape better
+tnoremap <ESC> <C-\><C-n>
+
